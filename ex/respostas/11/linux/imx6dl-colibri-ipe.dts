@@ -1,0 +1,112 @@
+/*
+ * Copyright 2016 Embedded Labworks
+ * Copyright 2014-2015 Toradex AG
+ * Copyright 2012 Freescale Semiconductor, Inc.
+ * Copyright 2011 Linaro Ltd.
+ *
+ * The code contained herein is licensed under the GNU General Public
+ * License. You may obtain a copy of the GNU General Public License
+ * Version 2 or later at the following locations:
+ *
+ * http://www.opensource.org/licenses/gpl-license.html
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+
+/dts-v1/;
+
+#include <dt-bindings/input/input.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+#include "imx6dl.dtsi"
+#include "imx6qdl-colibri.dtsi"
+
+/ {
+	model = "Toradex Colibri iMX6DL/S on Viola Carrier Board with Ipe Expansion Board";
+	compatible = "toradex,colibri_imx6dl-eval", "toradex,colibri_imx6dl", "fsl,imx6dl";
+
+	regulators {
+		reg_usb_host_vbus: usb_host_vbus {
+			status = "okay";
+		};
+	};
+
+	leds {
+		compatible = "labworks,drvled";
+
+		led1 {
+			label = "ipe:green:usr1";
+			gpios = <&gpio2 21 GPIO_ACTIVE_HIGH>;
+			default-trigger = "heartbeat";
+		};
+	};
+
+	buttons {
+		compatible = "labworks,drvbtn";
+
+		btn1 {
+			gpios = <&gpio6 6 GPIO_ACTIVE_LOW>;
+		};
+	};
+};
+
+&ecspi4 {
+	status = "okay";
+
+	gpiom1: gpio@0 {
+		compatible = "microchip,mcp23s08";
+		gpio-controller;
+		#gpio-cells = <2>;
+		microchip,spi-present-mask = <0x01>;
+		reg = <0>;
+		spi-max-frequency = <1000000>;
+	};
+};
+
+&i2c3 {
+	status = "okay";
+
+	mma8653fc@1d {
+		compatible = "fsl,mma8653";
+		reg = <0x1d>;
+	};
+};
+
+&pwm1 {
+	status = "okay";
+};
+
+&pwm2 {
+	status = "okay";
+};
+
+&pwm3 {
+	status = "okay";
+};
+
+&pwm4 {
+	status = "okay";
+};
+
+&uart1 {
+	status = "okay";
+};
+
+&uart2 {
+	status = "okay";
+};
+
+&uart3 {
+	status = "okay";
+};
+
+&usbh1 {
+	status = "okay";
+};
+
+&usdhc1 {
+	status = "okay";
+};
+
+&gpio2 {
+	status = "okay";
+};
+

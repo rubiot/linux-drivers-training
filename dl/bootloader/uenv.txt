@@ -1,0 +1,10 @@
+setenv ipaddr 192.168.0.2
+setenv serverip 192.168.0.1
+setenv consolecfg console=ttymxc0,115200n8
+setenv ipcfg ip=${ipaddr}
+setenv nfsdir /opt/labs/ex/03/rootfs
+setenv bootnfs root=/dev/nfs rw nfsroot=${serverip}:${nfsdir} rootwait
+setenv bootargs ${consolecfg} ${ipcfg} ${bootnfs}
+setenv clear_gpios 'gpio clear 53; gpio clear 52; gpio clear 35'
+setenv bootcmd 'run clear_gpios; tftpboot ${kernel_addr_r} zImage; tftpboot ${fdt_addr_r} imx6dl-colibri-ipe.dtb; bootz ${kernel_addr_r} - ${fdt_addr_r}'
+saveenv

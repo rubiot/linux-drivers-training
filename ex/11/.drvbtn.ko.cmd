@@ -1,0 +1,1 @@
+cmd_/opt/labs/ex/11/drvbtn.ko := arm-linux-gnueabi-ld -EL -r  -T /opt/labs/ex/01/linux/scripts/module-common.lds --build-id  -o /opt/labs/ex/11/drvbtn.ko /opt/labs/ex/11/drvbtn.o /opt/labs/ex/11/drvbtn.mod.o
